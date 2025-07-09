@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <title>Hexashop Ecommerce HTML CSS Template</title>
+    <title>Thryft</title>
 
 
     <!-- Additional CSS Files -->
@@ -81,7 +81,7 @@ https://templatemo.com/tm-571-hexashop
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="dashboard.html" title="User Dashboard">
+                                    <a href="dashboard.jsp" title="User Dashboard">
                                         <i class="fa fa-user" style="font-size: 20px;"></i> <!-- Font Awesome Icon -->
                                     </a>
                                 </li>

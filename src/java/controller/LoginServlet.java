@@ -35,10 +35,17 @@ public class LoginServlet extends HttpServlet {
 
             if (rs.next()) {
                 int userId = rs.getInt("id"); // get user ID from result set
+                boolean isAdmin = rs.getBoolean("admin"); // Direct boolean check
 
-                HttpSession session = request.getSession(); // ✅ Move this up before using `session`
+                HttpSession session = request.getSession();
                 session.setAttribute("userId", userId);
                 session.setAttribute("username", rs.getString("username"));
+                session.setAttribute("isAdmin", isAdmin);
+
+                if (isAdmin) {
+                    response.sendRedirect("admin.html");
+                    return; // Stop further execution for admins
+                }
 
                 // ✅ Load user cart from DB
                 Map<Integer, CartItem> cart = new HashMap<>();

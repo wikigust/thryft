@@ -75,7 +75,7 @@ https://templatemo.com/tm-571-hexashop
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="dashboard.html" title="User Dashboard">
+                                    <a href="dashboard.jsp" title="User Dashboard">
                                         <i class="fa fa-user" style="font-size: 20px;"></i> <!-- Font Awesome Icon -->
                                     </a>
                                 </li>

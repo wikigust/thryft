@@ -82,9 +82,9 @@
     </div>
 
     <div class="dashboard-grid">
-      <div class="card" onclick="location.href='profile.jsp'">My Profile</div>
-      <div class="card" onclick="location.href='orders.jsp'">Orders</div>
-      <div class="card" onclick="location.href='cart.jsp'">Cart</div>
+      <div class="card" onclick="location.href='profile'">My Profile</div>
+      <div class="card" onclick="location.href='orders'">Orders</div>
+      <div class="card" onclick="location.href='cart'">Cart</div>
       <div class="card" onclick="location.href='logoutServlet'">Log Out</div>
     </div>
   </div>

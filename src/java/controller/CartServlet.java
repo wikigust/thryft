@@ -17,9 +17,10 @@ public class CartServlet extends HttpServlet {
     // Handle Add to Cart
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
         Integer userId = (Integer) session.getAttribute("userId");
+        String address = (String) session.getAttribute("userAddress");
 
         if (userId == null) {
             response.sendRedirect("login.jsp");
@@ -88,10 +89,12 @@ public class CartServlet extends HttpServlet {
         }
 
         List<CartItem> cartItems = new ArrayList<>();
+        String userAddress = null;
 
         try {
             Connection conn = DatabaseConnection.initializeDatabase();
 
+            // Get cart items
             String sql = "SELECT ci.quantity, p.* FROM cart_items ci JOIN products p ON ci.product_id = p.id WHERE ci.user_id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, userId);
@@ -110,19 +113,38 @@ public class CartServlet extends HttpServlet {
                 cartItems.add(new CartItem(p, quantity));
             }
 
+            rs.close();
             stmt.close();
+
+            // Get user address
+            PreparedStatement addressStmt = conn.prepareStatement("SELECT address FROM users WHERE id = ?");
+            addressStmt.setInt(1, userId);
+            ResultSet addrRs = addressStmt.executeQuery();
+            if (addrRs.next()) {
+                userAddress = addrRs.getString("address");
+            }
+
+            addrRs.close();
+            addressStmt.close();
+
             conn.close();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String cartSuccess = request.getParameter("cartSuccess");
-        if ("true".equals(cartSuccess)) {
-            request.setAttribute("cartSuccess", true);
-        }
 
-
-        request.setAttribute("cartItems", cartItems);
-        request.getRequestDispatcher("cart.jsp").forward(request, response);
+    // Optional: if cart add success message exists
+    String cartSuccess = request.getParameter("cartSuccess");
+    if ("true".equals(cartSuccess)) {
+        request.setAttribute("cartSuccess", true);
     }
+
+    // Pass values to JSP
+    request.setAttribute("cartItems", cartItems);
+    request.setAttribute("userAddress", userAddress);
+
+    // Forward to cart.jsp
+    request.getRequestDispatcher("cart.jsp").forward(request, response);
+}
+
 }

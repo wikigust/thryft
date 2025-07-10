@@ -137,23 +137,34 @@ https://templatemo.com/tm-571-hexashop
                         </div>
                     </div>
                 </div>
-                <% } %>
-
-                <div class="col-lg-12 text-right mt-4">
-                    <h4>Total: RM <%= String.format("%.2f", grandTotal) %></h4>
-                    <!-- Add checkout or continue shopping buttons if needed -->
-                    <form action="checkout" method="post">
-                        <%
-                            long grandTotalInSen = Math.round(grandTotal * 100);
-                        %>
-                        <input type="hidden" name="amount" value="<%= grandTotalInSen %>">
-                        <button type="submit" class="btn btn-primary">Checkout</button>
-                    </form>
-                </div>
-                <% } %>
+                <% } } %>
+                <%
+                    String userAddress = (String) request.getAttribute("userAddress");
+                %>
+              
             </div>
-
         </div>
+                        <div class="cart-summary-row" style="margin-left:80px;">
+                    <!-- Left side: Address -->
+                    <div class="cart-summary-left">
+                        <% if (userAddress != null && !userAddress.trim().isEmpty()) { %>
+                            <p><strong>Delivery Address:</strong> <%= userAddress %></p>
+                        <% } else { %>
+                            <p><strong>Add a delivery address to continue with purchase</strong></p>
+                        <% } %>
+                    </div>
+
+                    <!-- Right side: Total + Checkout -->
+                    <div class="cart-summary-right" style="margin-right:80px;">
+                        <h4>Total: RM <%= String.format("%.2f", grandTotal) %></h4>
+                        <% if (userAddress != null && !userAddress.trim().isEmpty()) { %>
+                            <form action="checkout" method="post">
+                                <input type="hidden" name="amount" value="<%= Math.round(grandTotal * 100) %>">
+                                <button type="submit" class="btn btn-primary">Checkout</button>
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
     </section>
     <!-- ***** Products Area Ends ***** -->
     
@@ -248,6 +259,23 @@ https://templatemo.com/tm-571-hexashop
     height: 360px;
     object-fit: cover; /* Ensures image fills the box while maintaining crop */
     border-radius: 8px; /* Optional: rounded corners */
+}
+.cart-summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* So it wraps on smaller screens */
+    margin-top: 30px;
+}
+
+.cart-summary-left {
+    text-align: left;
+    flex: 1;
+}
+
+.cart-summary-right {
+    text-align: right;
+    flex: 1;
 }
 
 </style>

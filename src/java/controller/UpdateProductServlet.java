@@ -36,6 +36,7 @@ public class UpdateProductServlet extends HttpServlet {
         if (filePart != null && filePart.getSize() > 0) {
             // Correct path to deployed assets/images
             String uploadDir = getServletContext().getRealPath("/assets/images");
+            System.out.println("debugLine "+uploadDir);
             File uploadFolder = new File(uploadDir);
             if (!uploadFolder.exists()) {
                 uploadFolder.mkdirs();

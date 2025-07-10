@@ -61,9 +61,10 @@ public class ToyyibpayCheckoutServlet extends HttpServlet {
         data.put("billPriceSetting", "1");
         data.put("billPayorInfo", "1");
         data.put("billAmount", amountParam);
-        data.put("billReturnUrl", "https://7a22-2001-f40-960-4201-213d-7580-bce1-19bf.ngrok-free.app/Thryft/thanks.jsp");
-        data.put("billCallbackUrl", "https://7a22-2001-f40-960-4201-213d-7580-bce1-19bf.ngrok-free.app/Thryft/paymentCallback");
-        data.put("billExternalReferenceNo", UUID.randomUUID().toString());
+        data.put("billReturnUrl", "https://1cc9b1d8b323.ngrok-free.app/Thryft/index");
+        data.put("billCallbackUrl", "https://1cc9b1d8b323.ngrok-free.app/Thryft/paymentCallback");
+        String externalRef = "UID-" + userId + "-" + System.currentTimeMillis();
+        data.put("billExternalReferenceNo", externalRef);
         data.put("billTo", username);
         data.put("billEmail", userEmail != null ? userEmail : "unknown@example.com");
         data.put("billPhone", "0123456789");
@@ -117,6 +118,17 @@ public class ToyyibpayCheckoutServlet extends HttpServlet {
         }
 
         if (billCode != null) {
+            try (Connection conn2 = DatabaseConnection.initializeDatabase()) {
+                String insertPending = "INSERT INTO pending_payments (bill_code, user_id) VALUES (?, ?)";
+                PreparedStatement insertStmt = conn2.prepareStatement(insertPending);
+                insertStmt.setString(1, billCode);
+                insertStmt.setInt(2, userId);
+                insertStmt.executeUpdate();
+                insertStmt.close();
+            } catch (Exception e) {
+                e.printStackTrace(); // Optional: Log this somewhere
+            }
+
             session.setAttribute("lastBillCode", billCode);
             response.sendRedirect("https://dev.toyyibpay.com/" + billCode);
         } else {

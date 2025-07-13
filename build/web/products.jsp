@@ -62,8 +62,8 @@ https://templatemo.com/tm-571-hexashop
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="index">Home</a></li>
-                            <li class="scroll-to-section"><a href="index#men">Men's</a></li>
-                            <li class="scroll-to-section"><a href="index#women">Women's</a></li>
+                            <li><a href="index#men">Men's</a></li>
+                            <li><a href="index#women">Women's</a></li>
                             <li><a href="products">Products</a></li>
                             <%
                                 String user = (String) session.getAttribute("username");
@@ -75,7 +75,7 @@ https://templatemo.com/tm-571-hexashop
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="dashboard.html" title="User Dashboard">
+                                    <a href="dashboard.jsp">
                                         <i class="fa fa-user" style="font-size: 20px;"></i> <!-- Font Awesome Icon -->
                                     </a>
                                 </li>

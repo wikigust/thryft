@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Dashboard - HexaShop</title>
+  <title>Dashboard - Thryft</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/fontawesome.css">
   <link rel="stylesheet" href="assets/css/templatemo-hexashop.css">
@@ -72,7 +72,7 @@
 <body>
 
   <div class="dashboard-header">
-    <h1>Welcome to HexaShop Dashboard</h1>
+    <h1>Welcome to Thryft Dashboard</h1>
   </div>
 
   <div class="dashboard-container">

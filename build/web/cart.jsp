@@ -12,8 +12,12 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <title>Hexashop - Product Listing Page</title>
+    <script>
+        function confirmDelete(productName) {
+            return confirm('Are you sure you want to permanently delete "' + productName + '"?\nThis action cannot be undone.');
+        }
+    </script>
+    <title>Thryft - Product Listing Page</title>
 
 
     <!-- Additional CSS Files -->
@@ -56,14 +60,14 @@ https://templatemo.com/tm-571-hexashop
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="index.html" class="logo">
-                            <img src="assets/images/logo.png">
+                            <img src="assets/images/trift.png">
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="#men">Men's</a></li>
-                            <li class="scroll-to-section"><a href="#women">Women's</a></li>
+                            <li><a href="index">Home</a></li>
+                            <li><a href="index#men">Men's</a></li>
+                            <li><a href="index#women">Women's</a></li>
                             <li><a href="products">Products</a></li>
                             <%
                                 String user = (String) session.getAttribute("username");
@@ -130,10 +134,21 @@ https://templatemo.com/tm-571-hexashop
                         <div class="thumb" style="flex: 0 0 120px; margin-right: 20px;">
                             <img src="<%= p.getImagePath() %>" alt="<%= p.getName() %>" style="width: 160px; height: 160px; object-fit: cover; border-radius: 6px;">
                         </div>
-                        <div class="down-content">
-                            <h4 style="margin: 0;"><%= p.getName() %></h4>
-                            <p style="margin: 5px 0;">Category: <%= p.getCategory() %></p>
-                            <p style="margin: 0;">RM <%= String.format("%.2f", p.getPrice()) %> x <%= qty %> = <strong>RM <%= String.format("%.2f", total) %></strong></p>
+                        <div class="down-content" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                            <div>
+                                <h4 style="margin: 0;"><%= p.getName() %></h4>
+                                <p style="margin: 5px 0;">Category: <%= p.getCategory() %></p>
+                                <p style="margin: 0;">RM <%= String.format("%.2f", p.getPrice()) %> x <%= qty %> = <strong>RM <%= String.format("%.2f", total) %></strong></p>
+                            </div>
+                            <div>
+                                <form action="removeCartItem" method="POST" style="display:inline;">
+                                    <input type="hidden" name="id" value="<%= p.getId() %>">
+                                    <button type="submit" class="delete-btn" 
+                                            onclick="return confirmDelete('<%= p.getName() %>')">
+                                        <i class="fa fa-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -175,12 +190,12 @@ https://templatemo.com/tm-571-hexashop
                 <div class="col-lg-3">
                     <div class="first-item">
                         <div class="logo">
-                            <img src="assets/images/white-logo.png" alt="hexashop ecommerce templatemo">
+                            <img src="assets/images/rsz_trift.png" alt="Thryft Logo">
                         </div>
                         <ul>
-                            <li><a href="#">16501 Collins Ave, Sunny Isles Beach, FL 33160, United States</a></li>
-                            <li><a href="#">hexashop@company.com</a></li>
-                            <li><a href="#">010-020-0340</a></li>
+                            <li><a href="#">Persiaran Multimedia, Seksyen 7, Jalan Plumbum 7/102, I-City, 40000 Shah Alam, Selangor</a></li>
+                            <li><a href="#">thryfster@gmail.com</a></li>
+                            <li><a href="#">013-332-7313</a></li>
                         </ul>
                     </div>
                 </div>
@@ -212,9 +227,7 @@ https://templatemo.com/tm-571-hexashop
                 </div>
                 <div class="col-lg-12">
                     <div class="under-footer">
-                        <p>Copyright © 2022 HexaShop Co., Ltd. All Rights Reserved. 
-                        
-                        <br>Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a></p>
+                        <p>Copyright © 2022 Thryft Co., Ltd. All Rights Reserved. </p>
                         <ul>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -278,4 +291,34 @@ https://templatemo.com/tm-571-hexashop
     flex: 1;
 }
 
+</style>
+<style>
+    .delete-btn {
+        background-color: #ff4444; /* Red color */
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+    
+    .delete-btn:hover {
+        background-color: #cc0000; /* Darker red on hover */
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .delete-btn:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+    
+    .delete-btn i {
+        font-size: 14px;
+    }
 </style>

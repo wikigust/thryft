@@ -449,7 +449,7 @@ https://templatemo.com/tm-571-hexashop
                 </div>
                 <div class="col-lg-12">
                     <div class="under-footer">
-                        <p>Copyright © 2022 Thryft Co., Ltd. All Rights Reserved. 
+                        <p>Copyright © 2022 Thryft Co., Ltd. All Rights Reserved.</p>
                         <ul>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>

@@ -61,10 +61,10 @@ public class ToyyibpayCheckoutServlet extends HttpServlet {
         data.put("billPriceSetting", "1");
         data.put("billPayorInfo", "1");
         data.put("billAmount", amountParam);
-        data.put("billReturnUrl", "https://1cc9b1d8b323.ngrok-free.app/Thryft/index");
-        data.put("billCallbackUrl", "https://1cc9b1d8b323.ngrok-free.app/Thryft/paymentCallback");
+        data.put("billReturnUrl", "https://22c28c0127f0.ngrok-free.app/Thryft/index");
+        data.put("billCallbackUrl", "https://22c28c0127f0.ngrok-free.app/Thryft/paymentCallback");
         String externalRef = "UID-" + userId + "-" + System.currentTimeMillis();
-        data.put("billExternalReferenceNo", externalRef);
+        data.put("billExternalReferenceNo", externalRef); 
         data.put("billTo", username);
         data.put("billEmail", userEmail != null ? userEmail : "unknown@example.com");
         data.put("billPhone", "0123456789");

@@ -54,6 +54,7 @@ public class DeleteProductServlet extends HttpServlet {
                         // 4. Delete actual image file (optional)
                         if (imagePath != null && !imagePath.isEmpty()) {
                             String fullPath = getServletContext().getRealPath(imagePath);
+                            System.out.println("debugline "+fullPath);
                             new java.io.File(fullPath).delete();
                         }
                         

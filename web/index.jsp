@@ -113,10 +113,7 @@ https://templatemo.com/tm-571-hexashop
                         <div class="thumb">
                             <div class="inner-content">
                                 <h4>Welcome to Thryft</h4>
-                                <span>Awesome, clean &amp; creative HTML5 Template</span>
-                                <div class="main-border-button">
-                                    <a href="collection.html">Purchase Now!</a>
-                                </div>
+                                <span>Style That Speaks for You<br> Discover timeless fashion, crafted for your everyday elegance.</span>
                             </div>
                             <img src="assets/images/welcome.jpg" alt="">
                         </div>
@@ -130,14 +127,14 @@ https://templatemo.com/tm-571-hexashop
                                     <div class="thumb">
                                         <div class="inner-content">
                                             <h4>Women</h4>
-                                            <span>Best Clothes For Women</span>
+                                            <span>Timeless Pieces, Endless Possibilities</span>
                                         </div>
                                         <div class="hover-content">
                                             <div class="inner">
                                                 <h4>Women</h4>
-                                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                                <p>From cozy essentials to statement looks, find what moves you.</p>
                                                 <div class="main-border-button">
-                                                    <a href="#">Discover More</a>
+                                                    <li class="scroll-to-section"><a href="#women">Shop Women’s</a></li>
                                                 </div>
                                             </div>
                                         </div>
@@ -150,14 +147,14 @@ https://templatemo.com/tm-571-hexashop
                                     <div class="thumb">
                                         <div class="inner-content">
                                             <h4>Men</h4>
-                                            <span>Best Clothes For Men</span>
+                                            <span>Wear Better, Feel Better</span>
                                         </div>
                                         <div class="hover-content">
                                             <div class="inner">
                                                 <h4>Men</h4>
-                                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.</p>
+                                                <p>Premium fabrics. Timeless designs. Built for the modern man.</p>
                                                 <div class="main-border-button">
-                                                    <a href="#">Discover More</a>
+                                                    <li class="scroll-to-section"><a href="#men">Explore the Edit</a></li>
                                                 </div>
                                             </div>
                                         </div>
@@ -181,8 +178,8 @@ https://templatemo.com/tm-571-hexashop
             <div class="row">
                 <div class="col-lg-6">
                     <div class="section-heading">
-                        <h2>Men's Latest</h2>
-                        <span>Details to details is what makes Hexashop different from the other themes.</span>
+                        <h2>Men’s New Arrivals</h2>
+                        <span>Crafted for Quality, Designed for You</span>
                     </div>
                 </div>
             </div>
@@ -199,13 +196,6 @@ https://templatemo.com/tm-571-hexashop
                         %>
                                 <div class="item">
                                     <div class="thumb">
-                                        <div class="hover-content">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-eye"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                                            </ul>
-                                        </div>
                                         <img src="<%= p.getImagePath() %>" alt="" class="thumb">
                                     </div>
                                     <div class="down-content">
@@ -235,8 +225,8 @@ https://templatemo.com/tm-571-hexashop
             <div class="row">
                 <div class="col-lg-6">
                     <div class="section-heading">
-                        <h2>Women's Latest</h2>
-                        <span>Details to details is what makes Hexashop different from the other themes.</span>
+                        <h2>Women’s New Arrivals</h2>
+                        <span>Where Thoughtful Design Meets Everyday Elegance.</span>
                     </div>
                 </div>
             </div>
@@ -278,9 +268,6 @@ https://templatemo.com/tm-571-hexashop
     <!-- ***** Women Area Ends ***** -->
 
   
-    <
-    
-
     <!-- ***** Social Area Starts ***** -->
     <section class="section" id="social">
         <div class="container">
@@ -288,7 +275,7 @@ https://templatemo.com/tm-571-hexashop
                 <div class="col-lg-12">
                     <div class="section-heading">
                         <h2>Social Media</h2>
-                        <span>Details to details is what makes Hexashop different from the other themes.</span>
+                        <span>Where Fashion Meets Community.</span>
                     </div>
                 </div>
             </div>
@@ -373,7 +360,7 @@ https://templatemo.com/tm-571-hexashop
                 <div class="col-lg-8">
                     <div class="section-heading">
                         <h2>By Subscribing To Our Newsletter You Can Get 30% Off</h2>
-                        <span>Details to details is what makes Hexashop different from the other themes.</span>
+                        <span>Join our community and be the first to access exclusive deals, styling tips, and new arrivals.</span>
                     </div>
                     <form id="subscribe" action="" method="get">
                         <div class="row">
@@ -384,7 +371,7 @@ https://templatemo.com/tm-571-hexashop
                           </div>
                           <div class="col-lg-5">
                             <fieldset>
-                              <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email Address" required="">
+                              <input name="email" type="text" id="email" pattern="[^ @]@[^ @]" placeholder="Your Email Address" required="">
                             </fieldset>
                           </div>
                           <div class="col-lg-2">
@@ -399,15 +386,15 @@ https://templatemo.com/tm-571-hexashop
                     <div class="row">
                         <div class="col-6">
                             <ul>
-                                <li>Store Location:<br><span>Sunny Isles Beach, FL 33160, United States</span></li>
-                                <li>Phone:<br><span>010-020-0340</span></li>
-                                <li>Office Location:<br><span>North Miami Beach</span></li>
+                                <li>Store Location:<br><span>Persiaran Multimedia, Seksyen 7, Jalan Plumbum 7/102, I-City, 40000 Shah Alam, Selangor</span></li>
+                                <li>Phone:<br><span>013-332-7313</span></li>
+                                <li>Office Location:<br><span>Palm Garden Apartment</span></li>
                             </ul>
                         </div>
                         <div class="col-6">
                             <ul>
                                 <li>Work Hours:<br><span>07:30 AM - 9:30 PM Daily</span></li>
-                                <li>Email:<br><span>info@company.com</span></li>
+                                <li>Email:<br><span>thryfster@gmail.com</span></li>
                                 <li>Social Media:<br><span><a href="#">Facebook</a>, <a href="#">Instagram</a>, <a href="#">Behance</a>, <a href="#">Linkedin</a></span></li>
                             </ul>
                         </div>
@@ -425,12 +412,12 @@ https://templatemo.com/tm-571-hexashop
                 <div class="col-lg-3">
                     <div class="first-item">
                         <div class="logo">
-                            <img src="assets/images/white-logo.png" alt="hexashop ecommerce templatemo">
+                            <img src="assets/images/rsz_trift.png" alt="Thryft Logo" >
                         </div>
                         <ul>
-                            <li><a href="#">16501 Collins Ave, Sunny Isles Beach, FL 33160, United States</a></li>
-                            <li><a href="#">hexashop@company.com</a></li>
-                            <li><a href="#">010-020-0340</a></li>
+                            <li><a href="#">Persiaran Multimedia, Seksyen 7, Jalan Plumbum 7/102, I-City, 40000 Shah Alam, Selangor</a></li>
+                            <li><a href="#">thryfster@gmail.com</a></li>
+                            <li><a href="#">013-332-7313</a></li>
                         </ul>
                     </div>
                 </div>
@@ -462,9 +449,7 @@ https://templatemo.com/tm-571-hexashop
                 </div>
                 <div class="col-lg-12">
                     <div class="under-footer">
-                        <p>Copyright © 2022 HexaShop Co., Ltd. All Rights Reserved. 
-                        
-                        <br>Design: <a href="https://templatemo.com" target="_parent" title="free css templates">TemplateMo</a></p>
+                        <p>Copyright © 2022 Thryft Co., Ltd. All Rights Reserved. 
                         <ul>
                             <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                             <li><a href="#"><i class="fa fa-twitter"></i></a></li>

@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <title>Hexashop - Product Listing Page</title>
+    <title>Thryft - Product Listing Page</title>
 
 
     <!-- Additional CSS Files -->
@@ -56,14 +56,14 @@ https://templatemo.com/tm-571-hexashop
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="index.html" class="logo">
-                            <img src="assets/images/logo.png">
+                            <img src="assets/images/trift.png">
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
-                            <li class="scroll-to-section"><a href="#men">Men's</a></li>
-                            <li class="scroll-to-section"><a href="#women">Women's</a></li>
+                            <li><a href="index">Home</a></li>
+                            <li class="scroll-to-section"><a href="index#men">Men's</a></li>
+                            <li class="scroll-to-section"><a href="index#women">Women's</a></li>
                             <li><a href="products">Products</a></li>
                             <%
                                 String user = (String) session.getAttribute("username");
@@ -75,7 +75,7 @@ https://templatemo.com/tm-571-hexashop
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="dashboard.jsp" title="User Dashboard">
+                                    <a href="dashboard.html" title="User Dashboard">
                                         <i class="fa fa-user" style="font-size: 20px;"></i> <!-- Font Awesome Icon -->
                                     </a>
                                 </li>
@@ -102,7 +102,7 @@ https://templatemo.com/tm-571-hexashop
                 <div class="col-lg-12">
                     <div class="inner-content">
                         <h2>Check Our Products</h2>
-                        <span>Awesome &amp; Creative HTML CSS layout by TemplateMo</span>
+                        <span>The best stuff from Thryft.</span>
                     </div>
                 </div>
             </div>
@@ -163,13 +163,6 @@ https://templatemo.com/tm-571-hexashop
                             <div class="down-content">
                                 <h4><%= p.getName() %></h4>
                                 <span>$<%= p.getPrice() %></span>
-                                <ul class="stars">
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
                                 <!-- Add to Cart Button Below -->
                                 <form method="post" action="cart" style=" argin-top:0px; margin-bottom: 50px;">
                                     <input type="hidden" name="productId" value="<%= p.getId() %>">
@@ -225,7 +218,7 @@ https://templatemo.com/tm-571-hexashop
                 <div class="col-lg-3">
                     <div class="first-item">
                         <div class="logo">
-                            <img src="assets/images/white-logo.png" alt="hexashop ecommerce templatemo">
+                            <img src="assets/images/rsz_trift.png" alt="hexashop ecommerce templatemo">
                         </div>
                         <ul>
                             <li><a href="#">16501 Collins Ave, Sunny Isles Beach, FL 33160, United States</a></li>

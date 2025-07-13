@@ -27,6 +27,7 @@
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            position: relative;
         }
 
         h2 {
@@ -46,9 +47,9 @@
         }
 
         .btn-back {
-            display: block;
-            margin-bottom: 20px;
-            text-align: right;
+            position: absolute;
+            top: 20px;
+            right: 30px;
         }
 
         .btn-secondary {

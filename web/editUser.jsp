@@ -76,16 +76,7 @@
         .checkbox-group {
             margin: 15px 0;
         }
-        .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-        }
-        .alert-danger {
-            background-color: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-        }
+
     </style>
 </head>
 <body>
@@ -94,11 +85,7 @@
     </div>
 
     <div class="admin-container">
-        <c:if test="${not empty param.error}">
-            <div class="alert alert-danger">
-                <i class="fas fa-exclamation-circle"></i> ${param.error}
-            </div>
-        </c:if>
+
 
         <form action="editUser" method="POST">
             <input type="hidden" name="id" value="${user.id}">

@@ -3,7 +3,6 @@ package model.bean;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.security.MessageDigest;
 
 public class User {
     private int id;
@@ -11,7 +10,7 @@ public class User {
     private String email;
     private String password;
     private boolean admin;
-    private String address;  // Single address field as requested
+    private String address;
 
     // Constructors
     public User() {}
@@ -19,7 +18,7 @@ public class User {
     public User(String username, String email, String password, String address) {
         this.username = username;
         this.email = email;
-        this.password = hashPassword(password);
+        this.password = password;  // No hashing
         this.admin = false;
         this.address = address;
     }
@@ -36,7 +35,7 @@ public class User {
     
     public String getPassword() { return password; }
     public void setPassword(String password) { 
-        this.password = hashPassword(password); 
+        this.password = password;  // No hashing
     }
     
     public boolean isAdmin() { return admin; }
@@ -44,25 +43,6 @@ public class User {
     
     public String getAddress() { return address; }
     public void setAddress(String address) { this.address = address; }
-
-    // Basic password hashing
-    private static String hashPassword(String password) {
-        try {
-            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-            byte[] hash = digest.digest(password.getBytes("UTF-8"));
-            StringBuilder hexString = new StringBuilder();
-            
-            for (byte b : hash) {
-                String hex = Integer.toHexString(0xff & b);
-                if(hex.length() == 1) hexString.append('0');
-                hexString.append(hex);
-            }
-            
-            return hexString.toString();
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
-    }
 
     // Database operations
     public boolean save() {
@@ -200,7 +180,7 @@ public class User {
 
     public static User login(String username, String password) {
         User user = getUserByUsername(username);
-        if (user != null && user.getPassword().equals(hashPassword(password))) {
+        if (user != null && user.getPassword().equals(password)) {  // Direct string comparison
             return user;
         }
         return null;

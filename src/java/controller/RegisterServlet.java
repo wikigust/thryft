@@ -26,6 +26,7 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String confirm = request.getParameter("confirm_password");
+        String address = null;
 
         if (!password.equals(confirm)) {
             request.setAttribute("error", "Passwords do not match.");
@@ -34,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
         }
 
         // Optionally save user somewhere (like session or DB)
-        User newUser = new User(username, email, password);
+        User newUser = new User(username, email, password,address);
         boolean success = newUser.save();
 
         if (success) {

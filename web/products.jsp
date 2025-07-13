@@ -152,6 +152,7 @@ https://templatemo.com/tm-571-hexashop
             <div class="row">
                 <%
                     ArrayList<Product> allProducts = (ArrayList<Product>) request.getAttribute("allProducts");
+                    Integer userId = (Integer) session.getAttribute("userId");
                     if (allProducts != null && !allProducts.isEmpty()) {
                         for (Product p : allProducts) {
                 %>
@@ -164,9 +165,10 @@ https://templatemo.com/tm-571-hexashop
                                 <h4><%= p.getName() %></h4>
                                 <span>$<%= p.getPrice() %></span>
                                 <!-- Add to Cart Button Below -->
-                                <form method="post" action="cart" style=" argin-top:0px; margin-bottom: 50px;">
+                                <form method="post" action="<%= request.getContextPath() %>/cart" style="margin-top:0px; margin-bottom: 50px;">
+                                    <input type="hidden" name="action" value="add"/>
                                     <input type="hidden" name="productId" value="<%= p.getId() %>">
-                                    <div style="display: flex; align-items: center; justify-content:flex-end;">
+                                    <input type="hidden" name="userId" value="<%= userId %>"> <div style="display: flex; align-items: center; justify-content:flex-end;">
                                         <input type="number" name="quantity" value="1" min="1" style="width: 60px;">
                                         <button type="submit" class="btn btn-sm btn-primary" style="margin-left: 10px; height:35px; background-color:black; border:black;">
                                             <i class="fa fa-shopping-cart"></i> Add to Cart

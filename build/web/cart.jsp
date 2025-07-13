@@ -17,6 +17,66 @@
             return confirm('Are you sure you want to permanently delete "' + productName + '"?\nThis action cannot be undone.');
         }
     </script>
+    <script>
+        function updateQuantityAndRefresh(productId, userId, newQuantityStr) {
+            let newQty = parseInt(newQuantityStr);
+            let quantityInput = document.getElementById('quantity_' + productId);
+
+            // Input validation: Ensure quantity is a valid number and at least 1
+            // If newQty is 0, the server will remove the item, which is fine.
+            if (isNaN(newQty) || newQty < 0) { // Allow 0 to enable deletion
+                newQty = 1; // Default to 1 if invalid (but not for explicit 0)
+                quantityInput.value = newQty; // Update input field to valid value
+            }
+
+            // ⭐⭐⭐ IMPORTANT: Adjust '/yourWebAppName' to your actual web application's context path if needed ⭐⭐⭐
+            // If your app runs at http://localhost:8080/myproject/, use '/myproject/updateCartItem'
+            // If your app runs at http://localhost:8080/, use '/updateCartItem'
+            const servletUrl = '/updateCartItem'; 
+
+            fetch(servletUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ 
+                    productId: String(productId), // Send as string to match servlet's parsing
+                    userId: String(userId),       // Send as string
+                    newQuantity: newQty           // Send as number
+                }),
+            })
+            .then(response => {
+                // Check for HTTP errors (e.g., 401, 404, 500)
+                if (!response.ok) {
+                    // Try to parse error message from server if available, otherwise use default
+                    return response.text().then(errorText => { // Read as text, might not be JSON
+                        try {
+                            const errorJson = JSON.parse(errorText); // Try to parse as JSON
+                            throw new Error(errorJson.message || 'Server error: ' + response.statusText);
+                        } catch (e) {
+                            // If not JSON, just use the raw text or default message
+                            throw new Error('Server error (' + response.status + '): ' + errorText || response.statusText);
+                        }
+                    });
+                }
+                return response.json(); // Expecting JSON response from backend
+            })
+            .then(data => {
+                if (data.success) {
+                    console.log("Cart updated successfully, refreshing page:", data.message);
+                    window.location.reload(); // Refresh the entire page
+                } else {
+                    alert('Error updating cart: ' + data.message);
+                    // No refresh on failure, user can see the error
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                alert('Failed to update cart. ' + error.message || 'Please try again.');
+            });
+        }
+    </script>
+
     <title>Thryft - Product Listing Page</title>
 
 
@@ -114,6 +174,7 @@ https://templatemo.com/tm-571-hexashop
             <%@ page import="model.bean.CartItem, model.bean.Product" %>
             <%
                 List<CartItem> cartItems = (List<CartItem>) request.getAttribute("cartItems");
+                Integer userId = (Integer) request.getAttribute("userId"); 
                 double grandTotal = 0;
             %>
 
@@ -131,14 +192,38 @@ https://templatemo.com/tm-571-hexashop
                 %>
                 <div class="col-12 mb-4">
                     <div class="item d-flex align-items-center" style="border: 1px solid #ddd; border-radius: 8px; margin-top:0px; margin-bottom:0px; padding: 15px;">
-                        <div class="thumb" style="flex: 0 0 120px; margin-right: 20px;">
-                            <img src="<%= p.getImagePath() %>" alt="<%= p.getName() %>" style="width: 160px; height: 160px; object-fit: cover; border-radius: 6px;">
+                        <div class="thumb" style="flex: 0 0 120px; margin-right: 20px; overflow: hidden;">
+                            <img src="<%= p.getImagePath() %>" alt="<%= p.getName() %>" style="width: 100%; height: 100%; object-fit: cover; border-radius: 6px;">
                         </div>
                         <div class="down-content" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                            <div>
-                                <h4 style="margin: 0;"><%= p.getName() %></h4>
+                            <div style="flex-grow: 1;"> <h4 style="margin: 0;"><%= p.getName() %></h4>
                                 <p style="margin: 5px 0;">Category: <%= p.getCategory() %></p>
-                                <p style="margin: 0;">RM <%= String.format("%.2f", p.getPrice()) %> x <%= qty %> = <strong>RM <%= String.format("%.2f", total) %></strong></p>
+                                <p style="margin: 0; display: flex; align-items: center; gap: 5px;">
+                                    RM <%= String.format("%.2f", p.getPrice()) %> x 
+                                    <div class="quantity-controls">
+                                        <%-- Form for Decrement Quantity --%>
+                                        <form action="<%= request.getContextPath() %>/cart" method="post">
+                                            <input type="hidden" name="action" value="decrement"/>
+                                            <input type="hidden" name="productId" value="<%= p.getId() %>"/>
+                                            <input type="hidden" name="userId" value="<%= userId %>"/>
+                                            <button type="submit">-</button>
+                                        </form>
+
+                                        <%-- Display current quantity --%>
+                                        <span class="current-quantity">
+                                            <%= qty %>
+                                        </span>
+
+                                        <%-- Form for Increment Quantity --%>
+                                        <form action="<%= request.getContextPath() %>/cart" method="post">
+                                            <input type="hidden" name="action" value="increment"/>
+                                            <input type="hidden" name="productId" value="<%= p.getId() %>"/>
+                                            <input type="hidden" name="userId" value="<%= userId %>"/>
+                                            <button type="submit">+</button>
+                                        </form>
+                                    </div>
+                                    = <strong>RM <span id="total_<%= p.getId() %>"><%= String.format("%.2f", total) %></span></strong>
+                                </p>
                             </div>
                             <div>
                                 <form action="removeCartItem" method="POST" style="display:inline;">
@@ -156,8 +241,6 @@ https://templatemo.com/tm-571-hexashop
                 <%
                     String userAddress = (String) request.getAttribute("userAddress");
                 %>
-              
-            </div>
         </div>
                         <div class="cart-summary-row" style="margin-left:80px;">
                     <!-- Left side: Address -->
@@ -320,5 +403,49 @@ https://templatemo.com/tm-571-hexashop
     
     .delete-btn i {
         font-size: 14px;
+    }
+</style>
+<style>
+    .quantity-controls {
+        display: flex;
+        align-items: center;
+        gap: 5px; /* Space between buttons and quantity */
+    }
+
+    .quantity-controls form {
+        margin: 0; /* Remove default form margins */
+        padding: 0;
+        line-height: 1; /* Helps with vertical alignment of button content */
+    }
+
+    .quantity-controls button {
+        background-color: #f0f0f0; /* Light gray background */
+        border: 1px solid #ccc;
+        color: #333;
+        cursor: pointer;
+        font-size: 0.9em; /* Smaller font */
+        width: 20px; /* Fixed width */
+        height: 20px; /* Fixed height for square shape */
+        display: flex;
+        justify-content: center; /* Center content horizontally */
+        align-items: center; /* Center content vertically */
+        border-radius: 4px; /* Slightly rounded corners */
+        padding: 0; /* Remove default button padding */
+        box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Subtle shadow */
+        transition: background-color 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+    }
+
+    .quantity-controls button:hover {
+        background-color: #e2e6ea; /* Darker on hover */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.15); /* Slightly more prominent shadow on hover */
+    }
+
+    .current-quantity {
+        font-size: 1em; /* Standard font size for quantity */
+        font-weight: bold;
+        color: #333;
+        min-width: 20px; /* Ensure space for quantity */
+        text-align: center;
+        padding: 0 2px; /* Small padding left/right */
     }
 </style>

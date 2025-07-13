@@ -11,14 +11,6 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/xvent/OneDrive/Documents/NetBeansProjects/thryft/src/java/controller/ViewOrderDetailServlet.java</file>
-            <file>file:/C:/Users/xvent/OneDrive/Documents/NetBeansProjects/thryft/src/java/controller/OrderServlet.java</file>
-            <file>file:/C:/Users/xvent/OneDrive/Documents/NetBeansProjects/thryft/src/java/controller/MenProductsServlet.java</file>
-            <file>file:/C:/Users/xvent/OneDrive/Documents/NetBeansProjects/thryft/web/admin.html</file>
-            <file>file:/C:/Users/xvent/OneDrive/Documents/NetBeansProjects/thryft/src/java/controller/OrderViewServlet.java</file>
-            <file>file:/C:/Users/xvent/OneDrive/Documents/NetBeansProjects/thryft/src/java/controller/FileDownloadServlet.java</file>
-            <file>file:/C:/Users/xvent/OneDrive/Documents/NetBeansProjects/thryft/src/java/controller/LogoutServlet.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
